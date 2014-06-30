@@ -4,6 +4,8 @@ import (
 	"encoding/csv"
 	"fmt"
 	"log"
+	"net"
+	"net/http"
 	"os"
 	"strconv"
 )
@@ -43,4 +45,18 @@ func main() {
 
 		distribution.Add(floats[0], floats[1], floats[2], floats[3])
 	}
+
+	// TODO make configurable
+	l, err := net.Listen("tcp", "127.0.0.1:8888")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/plain")
+		w.Write([]byte("YO\n"))
+	})
+
+	http.Serve(l, handler)
 }
