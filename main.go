@@ -26,7 +26,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	distribution := &Distribution{}
+	distribution := NewDistribution()
 
 	// Start from 1 to skip header row.
 	for _, row := range rows[1:] {
