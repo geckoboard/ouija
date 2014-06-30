@@ -30,6 +30,10 @@ func main() {
 
 	distribution := NewDistribution()
 
+	if len(rows) < 2 {
+		log.Fatal("not enough rows in CSV file")
+	}
+
 	// Start from 1 to skip header row.
 	for _, row := range rows[1:] {
 		// Lower Bound, Upper Bound (non-inclusive), Count, Probability.
