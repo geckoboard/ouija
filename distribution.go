@@ -45,6 +45,10 @@ func (d Distribution) Output(base float64) float64 {
 	return 0.0
 }
 
+func (d Distribution) OutputRand() float64 {
+	return d.Output(d.random.Float64())
+}
+
 // Assumes that start <= end.
 func (d Distribution) randomBetween(start, end float64) float64 {
 	n := d.random.Float64()
