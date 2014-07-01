@@ -27,8 +27,8 @@ func (s HTTPServer) ListenAndServe(addr string) error {
 		time.Sleep(time.Duration(latencyNs))
 
 		w.Header().Set("X-Ouija-Latency", fmt.Sprintf("%v", latency))
-		w.Header().Set("Content-Type", "text/plain")
-		w.Write([]byte("YO\n"))
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte(fmt.Sprintf("{ \"latency\": \"%v\"}", latency)))
 	})
 
 	http.Serve(l, handler)
